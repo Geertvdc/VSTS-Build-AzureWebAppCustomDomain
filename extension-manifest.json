@@ -1,0 +1,73 @@
+{
+  "manifestVersion": 1,
+  "id": "GeertvanderCruijsen-Vsts-Release-AzureWebAppCustomDomain",
+  "name": "Azure WebApp Custom Domain",
+  "version": "1.0.0",
+  "publisher": "geertvdcruijsen",
+  "public": true,
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Add custom domain hostname to Azure Web Apps",
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "Azure",
+    "domain",
+    "host",
+    "www",
+    "web",
+    "WebApp",
+    "App Service",
+    "Xpirit"
+  ],
+  "screenshots": [
+    {
+       "path": "geertvdc.vsts.azurewebappcustomdomain.extension/images/1.png"
+    }
+  ],
+  "content": {
+    "details": {
+      "path": "geertvdc.vsts.azurewebappcustomdomain.extension/readme.md"
+    },
+    "license": {
+      "path": "geertvdc.vsts.azurewebappcustomdomain.extension/license.txt"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://mobilefirstcloudfirst.net/"
+    },
+    "support": {
+      "uri": "https://github.com/Geertvdc/VSTS-Build-AzureWebAppCustomDomain"
+    }
+  },
+  "branding": {
+    "color": "rgb(255, 255, 255)",
+    "theme": "light"
+  },
+  "icons": {
+    "default": "geertvdc.vsts.azurewebappcustomdomain.extension/images/icon-large.png"
+  },
+  "files": [
+    {
+      "path": "geertvdc-vsts-azurewebapp-addhostname"
+    }
+  ],
+
+  "contributions": [
+    {
+      "id": "geertvdc-vsts-azurewebapp-addhostname",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "geertvdc-vsts-azurewebapp-addhostname"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+    "id": "9d784e76-16ca-4c3c-831c-3a4c255141b3",
+    "name": "WebAppCustomDomain",
+    "friendlyName": "Add hostname to Azure Web App",
+    "description": "Add a custom hostname to your Azure Web App",
+    "helpMarkDown": "Version: 1.0. [More Information](https://github.com/Geertvdc/VSTS-Build-AzureWebAppCustomDomain)",
+    "category": "Utility",
+    "author": "Geert van der Cruijsen",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "visibility": [
+      "Build",
+      "Release"
+    ],
+    "demands": [ "azureps" ],
+    "minimumAgentVersion": "1.102.0",
+    "groups": [],
+    "inputs": [
+  {
+            "name": "ConnectedServiceName",
+            "type": "connectedService:AzureRM",
+            "label": "Azure subscription",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Select the Azure Resource Manager subscription for the deployment."
+        },
+        {
+            "name": "WebAppName",
+            "type": "pickList",
+            "label": "App Service name",
+            "defaultValue": "",
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Enter or Select the name of an existing Azure App Service."
+        },
+        {
+            "name": "domainName",
+            "type": "string",
+            "label": "Host name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Host name"
+        }
+    ],
+    "dataSourceBindings": [
+        {
+            "target": "WebAppName",
+            "endpointId": "$(ConnectedServiceName)",
+            "dataSourceName": "AzureRMWebAppNames"
+        }
+    ],
+    "instanceNameFormat": "Add hostname to Azure Web App",
+    "execution": {
+        "PowerShell3": {
+            "target": "$(currentDirectory)\\addHostname.ps1"
+        }
+    }
+}

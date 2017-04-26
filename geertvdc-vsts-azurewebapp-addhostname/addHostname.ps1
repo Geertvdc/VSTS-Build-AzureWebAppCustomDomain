@@ -15,10 +15,15 @@ Write-Output "Azure Initialized"
 $newHosts = @($DomainName)
 
 if($DeployToSlotFlag){
+	#deploy to web app slot
+	$slot = Get-AzureRmWebAppSlot -ResourceGroupName "$ResourceGroupName" -name "$WebAppName" -slot "$SlotName"
+	$defaultHostname = $slot.DefaultHostName
+	$hostnames=@{"hostNames"=@($defaultHostname, $DomainName)}
 
-	$result = Set-AzureRmWebApp -name "$WebAppName" -slot $SlotName -ResourceGroupName $ResourceGroupName -HostNames $newHosts
+	Set-AzureRmResource -ResourceType "Microsoft.Web/sites/slots" -ResourceGroupName $ResourceGroupName -ResourceName "$WebAppName/$SlotName" -propertyobject $hostnames -ApiVersion 2015-08-01 -force
 }
 else {
+	#deploy to main web app (no slot)
 	$result = Set-AzureRmWebApp -name "$WebAppName" -HostNames $newHosts
 }
 
